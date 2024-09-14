@@ -1,0 +1,1349 @@
+﻿----- sumar mesclar descifrar 
+
+
+---- sumandos html
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suma a Cadenas Numéricas</title>
+</head>
+<body>
+    <h1>Suma a Cadenas Numéricas</h1>
+    <button onclick="sumarCadenas()">Sumar</button>
+    <div id="resultado"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+------- sumandos js
+
+function sumarCadenas() {
+    const cadenaNumerica = prompt("Introduce una cadena num�rica, separada por comas (ej. 1234, 5678, 9012, 3456):");
+    const sumando = parseInt(prompt("Introduce un sumando (n�mero entero):"), 10);
+
+    // Convertimos la cadena num�rica a un array de n�meros
+    let numeros = cadenaNumerica.split(',').map(numero => parseInt(numero.trim(), 10));
+
+    // Sumamos el sumando a cada elemento del array de n�meros
+    let resultado = numeros.map(numero => numero + sumando);
+
+    // Mostramos el resultado
+    document.getElementById('resultado').innerText = `Resultado: ${resultado.join(', ')}`;
+}
+
+------- mesclarbarajando descifrarbarajando html
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reordenar Cadena Num�rica</title>
+</head>
+<body>
+    <h1>Reordenar Cadena Num�rica</h1>
+    <div id="resultado"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+------- decifrarbarajando js
+
+function invertirReordenamiento() {
+    const cadenaReordenada = prompt("Introduce la cadena reordenada:");
+    const cortes = prompt("Introduce el n�mero de cortes usados originalmente:");
+
+    // Convertimos la cadena reordenada a un array de n�meros
+    let numeros = cadenaReordenada.split(',').map(numero => numero.trim());
+
+    // Verificamos que el n�mero de cortes tenga al menos 2 d�gitos
+    if (cortes.length < 2) {
+        alert("El n�mero de cortes debe tener al menos 2 d�gitos.");
+        return;
+    }
+
+    let nuevaCadena = [...numeros]; // Inicializamos la nueva cadena con la cadena reordenada
+
+    // Iteramos hacia atr�s, desde el final hasta el inicio de la cadena de cortes
+    for (let i = cortes.length - 2; i >= 0; i -= 2) {
+        // Extraemos los d�gitos para los cortes en esta iteraci�n
+        const corte1 = parseInt(cortes[i], 10);
+        const corte2 = parseInt(cortes[i + 1], 10);
+
+        // Verificamos si el primer n�mero de cada par es mayor
+        if (corte1 > corte2) {
+            // Salteamos este par y avanzamos al siguiente par
+            continue;
+        }
+
+        // Realizamos los cortes de acuerdo a las especificaciones originales
+        const medio = nuevaCadena.slice(0, corte2 - corte1);
+        const inicio = nuevaCadena.slice(corte2 - corte1, corte2);
+        const final = nuevaCadena.slice(corte2);
+
+        // Creamos la nueva cadena con los elementos reordenados en el orden original
+        nuevaCadena = inicio.concat(medio, final);
+    }
+
+    // Mostramos el resultado en la p�gina
+    const resultado = `Cadena original: ${nuevaCadena.join(', ')}`;
+    document.getElementById('resultado').innerText = resultado;
+}
+
+// Llamamos a la funci�n para que se ejecute cuando se carga la p�gina
+invertirReordenamiento();
+
+---  cifrar y descifrar html ---------
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selector de Scripts</title>
+</head>
+<body>
+  <script>
+    var userInput = prompt("cifrar [1] o descifrar [2]:");
+
+    if (userInput === "1") {
+      // Llamar al primer script y luego al segundo
+      loadScript('script1.js', function() {
+        loadScript('script2.js');
+      });
+    } else if (userInput === "2") {
+      // Llamar al segundo script y luego al primero
+      loadScript('script4.js', function() {
+        loadScript('script3.js');
+      });
+    } else {
+      alert("Entrada no válida. Por favor, ingresa 1 o 2.");
+    }
+
+    function loadScript(scriptSrc, callback) {
+      var script = document.createElement('script');
+      script.src = scriptSrc;
+      script.onload = callback;
+      document.head.appendChild(script);
+    }
+  </script>
+</body>
+</html>
+
+--------
+--------
+--------
+
+
+
+
+
+
+
+
+
+--------
+
+----------------------------- 4
+
+------ 
+
+
+// Solicitar primer texto mediante prompt
+let sextaCadenaNumerica = prompt("Ingresa la cadena numerica:");
+let segundoTexto = prompt("Ingresa el texto:");
+let segundoCadenaNumerica = convertirTextoACadenaNumerica(segundoTexto);
+
+
+function convertirTextoACadenaNumerica(texto) {
+  let cadenaNumerica = '';
+
+  for (let i = 0; i < texto.length; i++) {
+    let char = texto.charAt(i);
+    let valor = char.charCodeAt(0);
+
+    // Agrega el valor a la cadena numerica
+    cadenaNumerica += valor;
+
+    // Agrega una coma y un espacio si no es el ultimo caracter
+    if (i < texto.length - 1) {
+      cadenaNumerica += ', ';
+    }
+  }
+
+  return cadenaNumerica;
+}
+
+function crearArrayDesdeCadenaNumerica(cadenaNum) {
+  let resultado = [];
+  let numeros = cadenaNum.split(/[,\s]+/);
+
+  for (let i = 0; i < numeros.length; i++) {
+    if (numeros[i] !== "") {
+      resultado.push(Number(numeros[i]));
+    }
+  }
+
+
+  return resultado;
+}
+function crearArrayDesdeCadenaNumerica2(cadenaNum2) {
+  let resultado = [];
+  let numeros = cadenaNum2.split(/[,\s]+/);
+
+  for (let i = 0; i < numeros.length; i++) {
+    if (numeros[i] !== "") {
+      resultado.push(Number(numeros[i]));
+    }
+  }
+
+
+  return resultado;
+}
+
+function mesclarArrays(){
+
+  let numeros = segundoCadenaNumerica.split(/[,\s]+/);
+
+  let mesmescla1 = array1;
+  let mesmescla2 = array2;
+
+mesmescla1[0+numeros[15]%4] = mesmescla2[4+numeros[15]%4];
+mesmescla1[4+numeros[15]%4] = mesmescla2[0+numeros[15]%4];
+
+mesmescla1[1+numeros[15]%4] = mesmescla2[3+numeros[15]%4];
+mesmescla1[3+numeros[15]%4] = mesmescla2[1+numeros[15]%4];
+
+mesmescla1[5+numeros[15]%4] = mesmescla2[11+numeros[15]%4];
+mesmescla1[11+numeros[15]%4] = mesmescla2[5+numeros[15]%4];
+
+mesmescla1[8+numeros[15]%4] = mesmescla2[18+numeros[15]%4];
+mesmescla1[18+numeros[15]%4] = mesmescla2[8+numeros[15]%4];
+
+mesmescla1[10+numeros[15]%4] = mesmescla2[19+numeros[15]%4];
+mesmescla1[19+numeros[15]%4] = mesmescla2[10+numeros[15]%4];
+
+mesmescla1[12+numeros[15]%4] = mesmescla2[14+numeros[15]%4];
+mesmescla1[14+numeros[15]%4] = mesmescla2[12+numeros[15]%4];
+
+mesmescla1[20+numeros[15]%4] = mesmescla2[24+numeros[15]%4];
+mesmescla1[24+numeros[15]%4] = mesmescla2[20+numeros[15]%4];
+
+mesmescla1[21+numeros[15]%4] = mesmescla2[22+numeros[15]%4];
+mesmescla1[22+numeros[15]%4] = mesmescla2[21+numeros[15]%4];
+
+mesmescla1[33+numeros[15]%4] = mesmescla2[35+numeros[15]%4];
+mesmescla1[35+numeros[15]%4] = mesmescla2[33+numeros[15]%4];
+
+mesmescla1[30+numeros[15]%4] = mesmescla2[34+numeros[15]%4];
+mesmescla1[34+numeros[15]%4] = mesmescla2[30+numeros[15]%4];
+
+array1= mesmescla1;
+array2= mesmescla2;
+}
+
+let cadenaNum = sextaCadenaNumerica;
+let cadenaNum2 = segundoCadenaNumerica;
+let array1 = crearArrayDesdeCadenaNumerica(cadenaNum);
+let array2 = [...array1];
+let array0 = crearArrayDesdeCadenaNumerica2(cadenaNum2);
+mesclarArrays();
+
+
+let cadenaNu1 = array1.join(', ');
+let cadenaNu2 = array2.join(', ');
+
+//console.log("segundo texto", cadenaNum2); 
+//console.log("sextaCadenaNumerica",sextaCadenaNumerica); 
+//console.log("mesklCadenaNumerica",cadenaNu1); 
+//console.log(cadenaNu2);
+
+---------
+
+
+-----------
+--------------------- 
+
+----------- 
+
+
+
+
+
+
+
+--------------------- 3
+
+---- 
+
+
+// Solicitar primer texto mediante prompt
+let primerTexto = "mi primera chamba";//prompt("Ingresa la cadena numerica:");
+
+// Convertir primer texto a cadena numerica comun y corriente
+let primerCadenaNumerica = convertirTextoACadenaNumerica(primerTexto);
+
+// Solicitar segundo texto mediante prompt
+//let segundoTexto = "mi segunda chamba"//prompt("Ingresa el segundo texto:")";
+
+// Convertir segundo texto a cadena numerica comun y corriente
+//let segundoCadenaNumerica = convertirTextoACadenaNumerica(segundoTexto);
+
+// Obtener la representacion en tetrario del segundo numero
+let tetrarioSegundoNumero = decimalATetrario(textoAAsciiYDecimal(segundoTexto));
+
+// Proceso adicional para obtener una tercera cadena numerica
+let terceraCadenaNumerica = aplicarProcesoTetrario(primerCadenaNumerica, tetrarioSegundoNumero);
+
+// Sumar la segunda cadena a la tercera cadena numerica despues del proceso tetrario para obtener la cuarta cadena
+let cuartaCadenaNumericaSuma = sumarCadenasNumericas(segundoCadenaNumerica, terceraCadenaNumerica);
+
+// Obtener el quinto elemento de la segunda cadena y sumarle el resto de dividirlo por 11 a cada elemento de la cuarta cadena
+let quintaCadenaNumerica = sumarRestoQuintoElemento(segundoCadenaNumerica, cuartaCadenaNumericaSuma, 5, 11);
+
+// Obtener el sexto elemento de la segunda cadena y sumarle el resto de dividirlo por 11 a cada elemento de la cuarta cadena
+//let sextaCadenaNumerica = sumarRestosextoElemento(segundoCadenaNumerica, quintaCadenaNumerica, 6, 23);
+sextaCadenaNumerica= cadenaNu1;
+//let septimaCadenaNumerica = desordenar 
+
+
+//a partir de aca se empieza a revertir
+
+// Obtener el revertirprimero elemento de la segunda cadena y sumarle el resto de dividirlo por 11 a cada elemento de la cuarta cadena
+let revertirprimeraCadenaNumerica = sumarRestorevertirprimeroElemento(segundoCadenaNumerica, sextaCadenaNumerica, 6, 23);
+
+// Obtener el revertirsegundo elemento de la segunda cadena y sumarle el resto de dividirlo por 11 a cada elemento de la cuarta cadena
+let revertirsegundaCadenaNumerica = sumarRestorevertirsegundoElemento(segundoCadenaNumerica, revertirprimeraCadenaNumerica, 5, 11);
+
+// Restar la segunda cadena a la cuarta cadena para obtener la quinta cadena
+let revertirterceroCadenaNumericaResta = restarCadenasNumericas(revertirsegundaCadenaNumerica, segundoCadenaNumerica);
+
+// Proceso inverso al tetrario para obtener la revertirquarta cadena numerica
+let revertirquartaCadenaNumerica = aplicarProcesoInversoTetrario(revertirterceroCadenaNumericaResta, tetrarioSegundoNumero);
+
+let descifrarFinal= cadenaNumericaATexto(revertirquartaCadenaNumerica);
+/* silenciando , censurando
+
+console.log(`Primer texto: ${primerTexto}`);
+console.log(`Cadena numerica correspondiente al primer texto: ${primerCadenaNumerica}`);
+
+console.log(`\nSegundo texto: ${segundoTexto}`);
+console.log(`Cadena numerica correspondiente al segundo texto: ${segundoCadenaNumerica}`);
+console.log(`Representacion en tetrario del segundo numero: ${tetrarioSegundoNumero}`);
+
+console.log(`\nTercera cadena numerica despues del proceso tetrario: ${terceraCadenaNumerica}`);
+
+console.log(`Cuarta cadena numerica suma de la segunda y tercera cadenas: ${cuartaCadenaNumericaSuma}`);
+
+console.log(`Quinta cadena numerica suma del quinto elemento de la segunda cadena al resto de dividirlo por 11 *(i+4)%((i+8)%5) a cada elemento de la cuarta cadena: ${quintaCadenaNumerica}`);
+
+console.log(`sexta cadena numerica suma del quinto elemento de la segunda cadena al resto de dividirlo por 23 y multiplicarlo por 17 y multiplicarlo por el nunenoElemento % 6 a cada elemento de la quinta cadena: ${sextaCadenaNumerica}`);
+
+// a partir de aca se empieza a revertir
+
+console.log(`revertirprimera cadena numerica resta del sexto elemento de la segunda cadena al resto de dividirlo por 23 y multiplicarlo por 17 y multiplicarlo por el nunenoElemento % 6 a cada elemento de la quinta cadena: ${revertirprimeraCadenaNumerica}`);
+
+console.log(`revertirsegunda cadena numerica resta del quinto elemento de la segunda cadena al resto de dividirlo por 11 *(i+4)%((i+8)%5) a cada elemento de la cuarta cadena: ${revertirsegundaCadenaNumerica}`);
+
+console.log(`revertirtercero cadena numerica resta de la segunda a la cuarta cadena: ${revertirterceroCadenaNumericaResta}`);
+
+*/
+
+//console.log(`revertirquarta cadena numerica despues del proceso inverso al tetrario: ${revertirquartaCadenaNumerica}`);
+console.log(descifrarFinal);
+
+
+
+// Comprobar si la revertirquarta cadena es igual a la primera
+//let sonIguales = (primerCadenaNumerica === revertirquartaCadenaNumerica);
+//console.log(`\n¿La revertirquarta cadena numerica es igual a la primera? ${sonIguales ? 'Si' : 'No'}`);
+
+function convertirTextoACadenaNumerica(texto) {
+  let cadenaNumerica = '';
+
+  for (let i = 0; i < texto.length; i++) {
+    let char = texto.charAt(i);
+    let valor = char.charCodeAt(0);
+
+    // Agrega el valor a la cadena numerica
+    cadenaNumerica += valor;
+
+    // Agrega una coma y un espacio si no es el ultimo caracter
+    if (i < texto.length - 1) {
+      cadenaNumerica += ', ';
+    }
+  }
+
+  return cadenaNumerica;
+}
+
+function textoAAsciiYDecimal(texto) {
+  let sumaAscii = 0;
+
+  for (let i = 0; i < texto.length; i++) {
+    let char = texto.charAt(i);
+    let valorAscii = char.charCodeAt(0);
+    sumaAscii += valorAscii;
+  }
+
+  return sumaAscii;
+}
+
+function decimalATetrario(numeroDecimal) {
+  if (isNaN(numeroDecimal) || numeroDecimal < 0) {
+    return "Por favor, ingresa un numero entero no negativo.";
+  }
+
+  let tetrario = '';
+
+  while (numeroDecimal > 0) {
+    let residuo = numeroDecimal % 4;
+    tetrario = residuo + tetrario;
+    numeroDecimal = Math.floor(numeroDecimal / 4);
+  }
+
+  return tetrario || '0';  // Devuelve '0' si el numero original es 0
+}
+
+function aplicarProcesoTetrario(cadenaNumerica, tetrario) {
+  let numeros = cadenaNumerica.split(', ').map(numero => parseInt(numero, 10));
+  let terceraCadenaNumerica = '';
+
+  for (let i = 0; i < numeros.length; i++) {
+    let resultado = numeros[i];
+
+    // Aplicar el proceso tetrario a cada digito del numero
+    let tetrarioArray = tetrario.split('').map(digito => parseInt(digito, 10));
+
+    for (let j = 0; j < tetrarioArray.length; j++) {
+      switch (tetrarioArray[j]) {
+        case 0:
+          resultado += 49;
+          break;
+        case 1:
+          resultado *= 7;
+          break;
+        case 2:
+          resultado += 169;
+          break;
+        case 3:
+          resultado *= 13;
+          break;
+      }
+    }
+
+    // Agregar el resultado a la tercera cadena numerica
+    terceraCadenaNumerica += resultado;
+
+    // Agregar una coma y un espacio si no es el ultimo numero
+    if (i < numeros.length - 1) {
+      terceraCadenaNumerica += ', ';
+    }
+  }
+
+  return terceraCadenaNumerica;
+}
+
+// Funcion para aplicar el proceso inverso al tetrario
+function aplicarProcesoInversoTetrario(cadenaNumerica, tetrario) {
+  let numeros = cadenaNumerica.split(', ').map(numero => parseInt(numero, 10));
+  let revertirquartaCadenaNumerica = '';
+
+  for (let i = 0; i < numeros.length; i++) {
+    let resultado = numeros[i];
+
+    // Aplicar el proceso inverso al tetrario a cada digito del numero
+    let tetrarioArray = tetrario.split('').map(digito => parseInt(digito, 10));
+
+    for (let j = tetrarioArray.length - 1; j >= 0; j--) {
+      switch (tetrarioArray[j]) {
+        case 0:
+          resultado -= 49;
+          break;
+        case 1:
+          resultado /= 7;
+          break;
+        case 2:
+          resultado -= 169;
+          break;
+        case 3:
+          resultado /= 13;
+          break;
+      }
+    }
+
+    // Agregar el resultado a la revertirquarta cadena numerica
+    revertirquartaCadenaNumerica += Math.round(resultado);
+
+    // Agregar una coma y un espacio si no es el ultimo numero
+    if (i < numeros.length - 1) {
+      revertirquartaCadenaNumerica += ', ';
+    }
+  }
+
+  return revertirquartaCadenaNumerica;
+}
+
+// Funcion para sumar elemento por elemento dos cadenas numericas
+function sumarCadenasNumericas(cadena1, cadena2) {
+  let numeros1 = cadena1.split(', ').map(numero => parseInt(numero, 10));
+  let numeros2 = cadena2.split(', ').map(numero => parseInt(numero, 10));
+
+  let cuartaCadenaNumericaSuma = '';
+
+  // Obtener la longitud de la cadena más corta
+  let longitudMinima = Math.min(numeros1.length, numeros2.length);
+
+  for (let i = 0; i < longitudMinima; i++) {
+    let sumaElementos = numeros1[i] + numeros2[i];
+    cuartaCadenaNumericaSuma += sumaElementos;
+
+    // Agregar una coma y un espacio si no es el ultimo numero
+    if (i < longitudMinima - 1) {
+      cuartaCadenaNumericaSuma += ', ';
+    }
+  }
+
+  return cuartaCadenaNumericaSuma;
+}
+
+// Funcion para restar elemento por elemento dos cadenas numericas
+function restarCadenasNumericas(cadena1, cadena2) {
+  let numeros1 = cadena1.split(', ').map(numero => parseInt(numero, 10));
+  let numeros2 = cadena2.split(', ').map(numero => parseInt(numero, 10));
+
+  let revertirterceroCadenaNumericaResta = '';
+
+  // Obtener la longitud de la cadena más corta
+  let longitudMinima = Math.min(numeros1.length, numeros2.length);
+
+  for (let i = 0; i < longitudMinima; i++) {
+    let restaElementos = numeros1[i] - numeros2[i];
+    revertirterceroCadenaNumericaResta += restaElementos;
+
+    // Agregar una coma y un espacio si no es el ultimo numero
+    if (i < longitudMinima - 1) {
+      revertirterceroCadenaNumericaResta += ', ';
+    }
+  }
+
+  return revertirterceroCadenaNumericaResta;
+}
+
+// Funcion para sumar modulo a cada elemento de la cadena
+function sumarRestoQuintoElemento(cadena, cadenaSuma, indiceElemento, modulo) {
+  let numeros = cadena.split(', ').map(numero => parseInt(numero, 10));
+  let quintoElemento = numeros[indiceElemento];
+  let nunetElemento = numeros[indiceElemento+4];
+  let nunet2Elemento = numeros[indiceElemento+8];
+
+  let numerosSuma = cadenaSuma.split(', ').map(numero => parseInt(numero, 10));
+
+  let quintaCadenaNumerica = '';
+
+  for (let i = 0; i < numerosSuma.length; i++) {
+    let resultado = numerosSuma[i] + (quintoElemento % modulo)*(nunetElemento% (nunet2Elemento%5));
+    quintaCadenaNumerica += resultado;
+
+    // Agregar una coma y un espacio si no es el ultimo numero
+    if (i < numerosSuma.length - 1) {
+      quintaCadenaNumerica += ', ';
+    }
+  }
+
+  return quintaCadenaNumerica;
+}
+
+// Funcion para sumar modulo a cada elemento de la cadena
+function sumarRestosextoElemento(cadena, cadenaSuma, indiceElemento, modulo) {
+  let numeros = cadena.split(', ').map(numero => parseInt(numero, 10));
+  let sextoElemento = numeros[indiceElemento];
+  let nunenoElemento = numeros[indiceElemento+3];
+
+  let numerosSuma = cadenaSuma.split(', ').map(numero => parseInt(numero, 10));
+
+  let sextaCadenaNumerica = '';
+
+  for (let i = 0; i < numerosSuma.length; i++) {
+    let resultado = numerosSuma[i] + (sextoElemento % modulo)*17*(nunenoElemento % 6);
+    sextaCadenaNumerica += resultado;
+
+    // Agregar una coma y un espacio si no es el ultimo numero
+    if (i < numerosSuma.length - 1) {
+      sextaCadenaNumerica += ', ';
+    }
+  }
+
+  return sextaCadenaNumerica;
+}
+
+// Funcion para sumar modulo a cada elemento de la cadena
+function sumarRestorevertirprimeroElemento(cadena, cadenaResta, indiceElemento, modulo) {
+  let numeros = cadena.split(', ').map(numero => parseInt(numero, 10));
+  let revertirprimeroElemento = numeros[indiceElemento];
+  let nunenoElemento = numeros[indiceElemento+3];
+
+  let numerosResta = cadenaResta.split(', ').map(numero => parseInt(numero, 10));
+
+  let revertirprimeraCadenaNumerica = '';
+
+  for (let i = 0; i < numerosResta.length; i++) {
+    let resultado = numerosResta[i] - (revertirprimeroElemento % modulo)*17*(nunenoElemento % 6);
+    revertirprimeraCadenaNumerica += resultado;
+
+    // Agregar una coma y un espacio si no es el ultimo numero
+    if (i < numerosResta.length - 1) {
+      revertirprimeraCadenaNumerica += ', ';
+    }
+  }
+
+  return revertirprimeraCadenaNumerica;
+}
+
+// Funcion para sumar modulo a cada elemento de la cadena
+function sumarRestorevertirsegundoElemento(cadena, cadenaSuma, indiceElemento, modulo) {
+  let numeros = cadena.split(', ').map(numero => parseInt(numero, 10));
+  let quintoElemento = numeros[indiceElemento];
+  let nunetElemento = numeros[indiceElemento+4];
+  let nunet2Elemento = numeros[indiceElemento+8];
+
+  let numerosSuma = cadenaSuma.split(', ').map(numero => parseInt(numero, 10));
+
+  let revertirsegundaCadenaNumerica = '';
+
+  for (let i = 0; i < numerosSuma.length; i++) {
+    let resultado = numerosSuma[i] -  (quintoElemento % modulo)*(nunetElemento% (nunet2Elemento%5));
+    revertirsegundaCadenaNumerica += resultado;
+
+    // Agregar una coma y un espacio si no es el ultimo numero
+    if (i < numerosSuma.length - 1) {
+      revertirsegundaCadenaNumerica += ', ';
+    }
+  }
+
+  return revertirsegundaCadenaNumerica;
+}
+
+// Función para convertir cadena numérica en texto
+function cadenaNumericaATexto(revertirquartaCadenaNumerica) {
+  // Divide la cadena numérica en números separados por comas
+  let numeros = revertirquartaCadenaNumerica.split(',');
+  let texto = '';
+
+  // Recorre cada número y lo convierte en su carácter correspondiente
+  for (let i = 0; i < numeros.length; i++) {
+    let valor = parseInt(numeros[i]) ; // Dividido por 2 para invertir la operación
+    let caracter = String.fromCharCode(valor);
+    texto += caracter;
+  }
+//console.log("texto"+texto);
+  return texto;
+}
+
+--- 
+---
+
+
+
+
+---------------
+------------------
+------------------
+
+------------------
+
+
+
+
+
+
+
+------------------
+
+cartera 1
+
+bitcoincash: qrvgwgjvrgkxkg8l0gkewk7v0n86psz3dye5r7tpg3
+
+
+
+4515169, 7297586, 7065706, 3355820, 4399222, 4805002, 7007742, 7355539, 5616542, 7529444, 5152793, 3587701, 6544009, 6138252, 6659941, 7123682, 6949774, 4341272, 7529457, 4225346, 4225324, 4225339, 5268741, 6833849, 5152797, 4225335, 6891814, 4573123, 5384663, 3703632, 5094839, 5616554, 3297857, 4573123, 5674496, 7529445, 4978905, 4399225, 6949774, 5558573, 4225328, 7065718, 6428079, 7239606, 4920942, 6775873, 7297574, 3703632, 5384678, 4225338, 5616537, 7007741
+-----------------------
+
+cartera 2
+
+
+bitcoincash: qpd6h9q49ef9csnz2lq8aqc6629y0ugjs5m4g80hc9
+
+
+6138245, 7413520, 7065706, 6775873, 4862958, 4862969, 4631095, 3355816, 6949783, 7297576, 5674496, 7413523, 6659943, 3297869, 4573129, 6428078, 6891807, 6254183, 6312150, 3587709, 6080268, 3703636, 3355830, 5268740, 3413787, 4631104, 5094837, 4920925, 6370102, 7529454, 7123684, 5442653, 3355824, 4225321, 5500595, 7007742, 4399235, 7123674, 3587688, 5558573, 7297579, 4573137, 3529729, 4399223, 3413800, 7007741, 5152795, 6601982, 4862975, 6254183, 4457197, 3761589
+--------------------------
+
+cartera 3
+
+bitcoincash: qrk9245eqzz3x28gvw3rvjt7srgacnsz6yxt4a68fe
+
+
+5616542, 5268741, 7355541, 4225325, 6833836, 4862969, 6486039, 3355816, 3645664, 6544005, 6601968, 5500612, 6254174, 7181658, 7065710, 6080276, 6775873, 3355833, 6601985, 4225346, 5500598, 6138250, 5326708, 6891816, 7529444, 6428081, 4862969, 3529717, 4978894, 3587698, 5210773, 5442653, 6775877, 4225321, 7355539, 6659940, 5268740, 4747027, 6254170, 6312144, 6891810, 5674510, 6891815, 4978893, 6196216, 3471754, 6775871, 5384675, 6486051, 5326711, 3297857, 4283292
+
+---------------------------------------------
+
+cartera 4
+
+bitcoincash: qrr4crdu8w0p0tg7w4lpak6w57pgr4c38uv98f4qjp
+
+
+
+6312146, 4978906, 5094828, 6486038, 6775869, 4862969, 3703623, 3529717, 4978905, 3471754, 4399222, 5442645, 6949778, 5152813, 3471756, 5326705, 4747028, 5326711, 3529734, 5152818, 7297575, 5442646, 4573137, 4920938, 4862962, 6891817, 3645662, 5210760, 3355818, 5094840, 4631103, 7239630, 6601976, 6080265, 6080265, 5152798, 7007750, 5326697, 3355820, 4920936, 3413790, 4978906, 5094838, 5616530, 6312150, 5558566, 7413508, 3703632, 6891820, 7529457, 3413791, 3413787
+-------------------------------------------
+
+
+cartera 5
+
+bitcoincash: qqkv506mzmqvyezlcad76l7qq7cpjepccu5vsh68qq
+
+
+5674509, 5558576, 3355818, 5326698, 5210760, 4805002, 7471478, 7529440, 4457202, 6775873, 6138232, 5616546, 6428075, 5094846, 3355822, 6659946, 7413510, 6254183, 4225338, 7181663, 6138235, 6544019, 7181652, 3703631, 6196203, 6659949, 3645662, 5152793, 7181640, 7529454, 3471763, 5442653, 7181646, 5326694, 6544001, 7239610, 5674509, 3587687, 6312137, 7355550, 4515163, 7413520, 5558574, 3297850, 6196216, 7471477, 3471752, 6544015, 5616546, 5674513, 3703626, 6891807
+
+
+-----------------------------
+
+-----------------
+................BTC {
+---
+1
+
+1Ht5Xt6cBCcj5dZPhDWWa4J5fvJgwHjgM7
+
+
+6659948, 6370114, 7471475, 6080269, 5322715, 7232615, 6020275, 3421755, 3471750, 4805002, 5152798, 7355539, 5094839, 6601972, 7007737, 3471767, 6196207, 3761605, 7529446, 7413517, 6891807, 6949787, 7239622, 3703643, 6080268, 5558580, 7529454, 6601981, 6949774, 7297586, 5442639, 4225321, 4283290, 4631104, 7413519, 5326719, 7239613, 5268727, 4804991, 4631095, 5674509, 3471753, 6659939, 7065715, 4978899, 3703632, 4978904, 6254167, 4399239, 6138236, 3645653, 5210774, 5384678, 3471767, 4399230, 4862962
+
+---------------------------------------------
+
+2
+
+1QDZU3NxB24Y1cH5wiRgWhMpKNKJcsu7Jo
+
+
+4747037, 4283302, 6544003, 5326698, 5322715, 7232615, 6020275, 3421755, 3703618, 4805002, 7239610, 7355539, 4747037, 4804995, 5442628, 5558579, 5500603, 4978912, 5094832, 6949781, 6486038, 3471767, 5384678, 5210785, 5210763, 6544019, 5558576, 4457202, 5210764, 5210774, 4283299, 6254166, 6312135, 3587698, 7007750, 6544026, 5674504, 6891803, 7239605, 5442633, 6196212, 3297852, 4920929, 6080276, 3471757, 5616543, 3355828, 6601969, 5326711, 6428071, 6775871, 4341269, 5616546, 3761602, 6080273, 6486038
+
+-----------------------------------------
+
+3
+
+1JrAXMXtdnkvrgxmBU8kdtHTcXwaZLNs7x
+
+
+3471763, 4920939, 6949772, 4341259, 5322715, 7232615, 6020275, 3421755, 4631090, 4862969, 4225326, 3355816, 5616542, 7065708, 7181638, 3587701, 3645659, 7065724, 6080271, 7413517, 3529721, 3645668, 4747041, 5616554, 7355542, 6312151, 7181652, 7413519, 5268731, 3471764, 6833847, 6891803, 7471475, 3587698, 6370113, 5500620, 6544009, 5500595, 5268727, 3297854, 5384674, 5442631, 4283292, 6138243, 6138239, 6428081, 4631102, 7355540, 4805008, 4747028, 4747026, 5384675, 6659952, 3471767, 7007745, 6196203
+
+-------------------------
+
+4
+
+1J2ZRnddtBzJ9Ez5HAZXE6q6vhvw8vznZa
+
+
+4515169, 4805005, 5442630, 6833840, 5322715, 7232615, 6020275, 3421755, 4283288, 4862969, 4804996, 3413783, 6428080, 6080269, 5094826, 6891820, 6544009, 6080285, 4631096, 5210771, 6370104, 4399239, 7355556, 3761610, 7007740, 5210778, 7529454, 7355552, 5094830, 5210774, 6833847, 5268727, 7355541, 3471764, 4399235, 6659960, 5094834, 7123671, 7065704, 5616534, 6775882, 4862961, 6659939, 6370111, 5616536, 6544015, 3297861, 3413784, 5152810, 6659939, 4515158, 7297586, 3761602, 6370117, 4573131, 6428071
+
+
+
+------------------------
+5
+
+1JfshqSgMPEjrZxmzGWpwV5GFQQHxVbop4
+
+
+6428080, 5210774, 7297574, 7065708, 5322715, 7232615, 6020275, 3421755, 4920925, 4862969, 6486039, 3297849, 6659948, 3587688, 5674496, 4573140, 7297580, 5674516, 5094832, 5674507, 7413510, 7181655, 6833853, 4515181, 6312136, 6544019, 4631104, 5674509, 4341259, 4747038, 5500606, 5268727, 5094828, 5152807, 6659948, 6775894, 6196207, 7065704, 4573123, 6428072, 7065717, 6196202, 3413787, 7355550, 3355823, 5210774, 3355828, 6428068, 5384678, 5616533, 4747026, 5152807, 3413800, 4225338, 3529725, 6775873
+
+}
+
+
+
+
+ada ( por 2 ){
+
+4181496, 3120339, 4227635, 4412184, 4381414, 4119969, 4243005, 4119969, 4504457, 4119973, 3120334, 4381429, 4212251, 4166126, 4181491, 4473697, 3120338, 4396808, 4412187, 4181510, 4304520, 4243019, 4335289, 3120347, 4381416, 4412184, 4181496, 4319896, 4412172, 3120348, 4289151, 4381437, 4412178, 4412170, 3120334, 4181490, 4181498, 4396794, 4458311, 4119980, 4381419, 4304531, 3120346, 4243002, 4319913, 4396795, 4350656, 4243015, 4381429, 4181502, 3120342, 4289142, 4119982, 4458326, 4319900, 3120345, 4319896, 4335277, 4381426, 4412183, 4227627, 3120342, 4150727, 4243014, 4381437, 4150727, 4289141, 4181489, 3120345, 4350660, 4381432, 4335279, 4135365, 4289155, 4181489, 4304534, 3120348, 4258393, 4335289, 4243005, 4319914, 3120345, 4150727, 4227624, 4335289, 4335288, 4396796, 4181493, 3120334, 4181498, 4473711, 4350654, 4119972, 4319900, 4166117
+
+}
+
+
+
+catalist Pin : 3780
+--------
+
+---
+monerujo( por 4 ){
+
+6229269, 6055362, 6461139, 5997404, 5997392, 6982829, 6171295, 6461126, 6635040, 6924866, 6287225, 2055651, 2055642, 5881476, 6635033, 2055645, 6345196, 6055374, 5939440, 6866920, 6577063, 6055375, 6693008, 6635040, 6692998, 6461140, 5997401, 2055634, 7040798, 6055371, 7156743, 6982854, 5997398, 2055634, 6866895, 6055362, 6808941, 6924865, 6461130, 6055368, 5997397, 2055648, 6287237, 6924863, 5823506, 6461130, 6287227, 5939437, 6866912, 2055651, 5997398, 6982833, 6693007, 6461145, 6055361, 7156741, 2055634, 6692996, 6635041, 6287238, 6577065, 6924870, 2055634, 5881469, 6982854, 6924862, 6924865, 6055361, 6808939, 2055640, 6866915, 5823493, 5997407, 6577077, 6055361, 6866912, 6866909, 2055647, 6113338, 6635031, 6287243, 6461137, 6055357, 5997392, 2055648, 7040809, 6055362, 6924870, 6055357, 6808941, 5823514, 6577060, 954264, 780364, 6229269, 6635034, 5939437, 6403171, 6055358, 7214714, 2055638, 6345194, 6982843, 6287242, 5939440, 7214705, 2055638, 6693007, 5823508, 7214701, 6519104, 6055357, 6577062, 6924876, 2055647, 5997395, 6055365, 5997390, 6287238, 5939448, 5823489, 6924865, 6055361, 5997401, 2055640, 6924882, 6635031, 6982846, 5939440, 6229262, 7214714, 2055648, 5939436, 6055371, 6461130, 6461144, 2055645, 6461126, 6982831, 5939437, 6403172, 7214702, 2055642, 6982829, 6519106, 5881481, 6808928, 6055360, 6461130, 6461137, 5823496, 2055648, 6171303, 6982830, 6808945, 6982833, 2055636, 6229272, 6635044, 6693011, 6055365, 2055638, 5881469, 6982848, 6924866, 6924873, 6055357, 6808930
+
+}
+-----------------------------------
+
+
+
+metamask
+
+4499839, 4545977, 4438312, 4438314, 4438310, 3638613, 4438315, 4392173, 3653994, 3684743, 4592100, 4484464, 4699761, 4545983, 3669366, 4638248, 4438314, 4576738, 4422948, 4607504, 4715135, 4438328, 4422945, 4576734, 4638241, 4684388, 4422942, 3700118, 4484449, 4438324, 4422944, 4469093, 4438318, 4484447, 3715497, 4469073, 4592113, 4407555, 4592104, 4545974, 4592107, 4638251, 3730888, 4422932, 4499843, 4576725, 4576723, 4438324, 4638254, 3746272, 4653624, 4592104, 4638250, 4638256, 4745894, 3761645, 4653616, 4668997, 4592114, 4699766, 4438315, 3638610, 3623223, 4699766, 4499851, 4392173, 4638240, 4376798, 4576732, 4669001, 3638622, 3638606, 4715149, 4499843, 4653620, 4422948, 4592114, 4561355, 3638616, 3653985, 4407570, 4484458, 4499826, 4545965, 4422945
+
+
+
+-----------------------------
+
+
+
+
+
+
+
+
+-----------------------------
+------------------ cifrar mesclar sumar 
+
+cifrar 
+
+
+// Solicitar primer texto mediante prompt
+let primerTexto = prompt("Ingresa el primer texto:");
+
+// Convertir primer texto a cadena numerica comun y corriente
+let primerCadenaNumerica = convertirTextoACadenaNumerica(primerTexto);
+
+// Solicitar segundo texto mediante prompt
+let segundoTexto = prompt("Ingresa el segundo texto:");
+
+// Convertir segundo texto a cadena numerica comun y corriente
+let segundoCadenaNumerica = convertirTextoACadenaNumerica(segundoTexto);
+
+// Obtener la representacion en tetrario del segundo numero
+let tetrarioSegundoNumero = decimalATetrario(textoAAsciiYDecimal(segundoTexto));
+
+// Proceso adicional para obtener una tercera cadena numerica
+let terceraCadenaNumerica = aplicarProcesoTetrario(primerCadenaNumerica, tetrarioSegundoNumero);
+
+// Sumar la segunda cadena a la tercera cadena numerica despues del proceso tetrario para obtener la cuarta cadena
+let cuartaCadenaNumericaSuma = sumarCadenasNumericas(segundoCadenaNumerica, terceraCadenaNumerica);
+
+// Obtener el quinto elemento de la segunda cadena y sumarle el resto de dividirlo por 11 a cada elemento de la cuarta cadena
+let quintaCadenaNumerica = sumarRestoQuintoElemento(segundoCadenaNumerica, cuartaCadenaNumericaSuma, 5, 11);
+
+// Obtener el sexto elemento de la segunda cadena y sumarle el resto de dividirlo por 11 a cada elemento de la cuarta cadena
+let sextaCadenaNumerica = sumarRestosextoElemento(segundoCadenaNumerica, quintaCadenaNumerica, 6, 23);
+
+//let septimaCadenaNumerica = desordenar 
+
+
+//a partir de aca se empieza a revertir
+
+// Obtener el revertirprimero elemento de la segunda cadena y sumarle el resto de dividirlo por 11 a cada elemento de la cuarta cadena
+let revertirprimeraCadenaNumerica = sumarRestorevertirprimeroElemento(segundoCadenaNumerica, sextaCadenaNumerica, 6, 23);
+
+// Obtener el revertirsegundo elemento de la segunda cadena y sumarle el resto de dividirlo por 11 a cada elemento de la cuarta cadena
+let revertirsegundaCadenaNumerica = sumarRestorevertirsegundoElemento(segundoCadenaNumerica, revertirprimeraCadenaNumerica, 5, 11);
+
+// Restar la segunda cadena a la cuarta cadena para obtener la quinta cadena
+let revertirterceroCadenaNumericaResta = restarCadenasNumericas(revertirsegundaCadenaNumerica, segundoCadenaNumerica);
+
+// Proceso inverso al tetrario para obtener la revertirquarta cadena numerica
+let revertirquartaCadenaNumerica = aplicarProcesoInversoTetrario(revertirterceroCadenaNumericaResta, tetrarioSegundoNumero);
+
+let descifrarFinal= cadenaNumericaATexto(revertirquartaCadenaNumerica);
+/* silenciando , censurando
+
+console.log(`Primer texto: ${primerTexto}`);
+console.log(`Cadena numerica correspondiente al primer texto: ${primerCadenaNumerica}`);
+
+console.log(`\nSegundo texto: ${segundoTexto}`);
+console.log(`Cadena numerica correspondiente al segundo texto: ${segundoCadenaNumerica}`);
+console.log(`Representacion en tetrario del segundo numero: ${tetrarioSegundoNumero}`);
+
+console.log(`\nTercera cadena numerica despues del proceso tetrario: ${terceraCadenaNumerica}`);
+
+console.log(`Cuarta cadena numerica suma de la segunda y tercera cadenas: ${cuartaCadenaNumericaSuma}`);
+
+console.log(`Quinta cadena numerica suma del quinto elemento de la segunda cadena al resto de dividirlo por 11 *(i+4)%((i+8)%5) a cada elemento de la cuarta cadena: ${quintaCadenaNumerica}`);
+
+console.log(`sexta cadena numerica suma del quinto elemento de la segunda cadena al resto de dividirlo por 23 y multiplicarlo por 17 y multiplicarlo por el nunenoElemento % 6 a cada elemento de la quinta cadena: ${sextaCadenaNumerica}`);
+
+// a partir de aca se empieza a revertir
+
+console.log(`revertirprimera cadena numerica resta del sexto elemento de la segunda cadena al resto de dividirlo por 23 y multiplicarlo por 17 y multiplicarlo por el nunenoElemento % 6 a cada elemento de la quinta cadena: ${revertirprimeraCadenaNumerica}`);
+
+console.log(`revertirsegunda cadena numerica resta del quinto elemento de la segunda cadena al resto de dividirlo por 11 *(i+4)%((i+8)%5) a cada elemento de la cuarta cadena: ${revertirsegundaCadenaNumerica}`);
+
+console.log(`revertirtercero cadena numerica resta de la segunda a la cuarta cadena: ${revertirterceroCadenaNumericaResta}`);
+
+*/
+
+//console.log(`revertirquarta cadena numerica despues del proceso inverso al tetrario: ${revertirquartaCadenaNumerica}`);
+//console.log("reconvertido final "+descifrarFinal);
+
+
+
+// Comprobar si la revertirquarta cadena es igual a la primera
+//let sonIguales = (primerCadenaNumerica === revertirquartaCadenaNumerica);
+//console.log(`\n¿La revertirquarta cadena numerica es igual a la primera? ${sonIguales ? 'Si' : 'No'}`);
+
+function convertirTextoACadenaNumerica(texto) {
+  let cadenaNumerica = '';
+
+  for (let i = 0; i < texto.length; i++) {
+    let char = texto.charAt(i);
+    let valor = char.charCodeAt(0);
+
+    // Agrega el valor a la cadena numerica
+    cadenaNumerica += valor;
+
+    // Agrega una coma y un espacio si no es el ultimo caracter
+    if (i < texto.length - 1) {
+      cadenaNumerica += ', ';
+    }
+  }
+
+  return cadenaNumerica;
+}
+
+function textoAAsciiYDecimal(texto) {
+  let sumaAscii = 0;
+
+  for (let i = 0; i < texto.length; i++) {
+    let char = texto.charAt(i);
+    let valorAscii = char.charCodeAt(0);
+    sumaAscii += valorAscii;
+  }
+
+  return sumaAscii;
+}
+
+function decimalATetrario(numeroDecimal) {
+  if (isNaN(numeroDecimal) || numeroDecimal < 0) {
+    return "Por favor, ingresa un numero entero no negativo.";
+  }
+
+  let tetrario = '';
+
+  while (numeroDecimal > 0) {
+    let residuo = numeroDecimal % 4;
+    tetrario = residuo + tetrario;
+    numeroDecimal = Math.floor(numeroDecimal / 4);
+  }
+
+  return tetrario || '0';  // Devuelve '0' si el numero original es 0
+}
+
+function aplicarProcesoTetrario(cadenaNumerica, tetrario) {
+  let numeros = cadenaNumerica.split(', ').map(numero => parseInt(numero, 10));
+  let terceraCadenaNumerica = '';
+
+  for (let i = 0; i < numeros.length; i++) {
+    let resultado = numeros[i];
+
+    // Aplicar el proceso tetrario a cada digito del numero
+    let tetrarioArray = tetrario.split('').map(digito => parseInt(digito, 10));
+
+    for (let j = 0; j < tetrarioArray.length; j++) {
+      switch (tetrarioArray[j]) {
+        case 0:
+          resultado += 49;
+          break;
+        case 1:
+          resultado *= 7;
+          break;
+        case 2:
+          resultado += 169;
+          break;
+        case 3:
+          resultado *= 13;
+          break;
+      }
+    }
+
+    // Agregar el resultado a la tercera cadena numerica
+    terceraCadenaNumerica += resultado;
+
+    // Agregar una coma y un espacio si no es el ultimo numero
+    if (i < numeros.length - 1) {
+      terceraCadenaNumerica += ', ';
+    }
+  }
+
+  return terceraCadenaNumerica;
+}
+
+// Funcion para aplicar el proceso inverso al tetrario
+function aplicarProcesoInversoTetrario(cadenaNumerica, tetrario) {
+  let numeros = cadenaNumerica.split(', ').map(numero => parseInt(numero, 10));
+  let revertirquartaCadenaNumerica = '';
+
+  for (let i = 0; i < numeros.length; i++) {
+    let resultado = numeros[i];
+
+    // Aplicar el proceso inverso al tetrario a cada digito del numero
+    let tetrarioArray = tetrario.split('').map(digito => parseInt(digito, 10));
+
+    for (let j = tetrarioArray.length - 1; j >= 0; j--) {
+      switch (tetrarioArray[j]) {
+        case 0:
+          resultado -= 49;
+          break;
+        case 1:
+          resultado /= 7;
+          break;
+        case 2:
+          resultado -= 169;
+          break;
+        case 3:
+          resultado /= 13;
+          break;
+      }
+    }
+
+    // Agregar el resultado a la revertirquarta cadena numerica
+    revertirquartaCadenaNumerica += Math.round(resultado);
+
+    // Agregar una coma y un espacio si no es el ultimo numero
+    if (i < numeros.length - 1) {
+      revertirquartaCadenaNumerica += ', ';
+    }
+  }
+
+  return revertirquartaCadenaNumerica;
+}
+
+// Funcion para sumar elemento por elemento dos cadenas numericas
+function sumarCadenasNumericas(cadena1, cadena2) {
+  let numeros1 = cadena1.split(', ').map(numero => parseInt(numero, 10));
+  let numeros2 = cadena2.split(', ').map(numero => parseInt(numero, 10));
+
+  let cuartaCadenaNumericaSuma = '';
+
+  // Obtener la longitud de la cadena más corta
+  let longitudMinima = Math.min(numeros1.length, numeros2.length);
+
+  for (let i = 0; i < longitudMinima; i++) {
+    let sumaElementos = numeros1[i] + numeros2[i];
+    cuartaCadenaNumericaSuma += sumaElementos;
+
+    // Agregar una coma y un espacio si no es el ultimo numero
+    if (i < longitudMinima - 1) {
+      cuartaCadenaNumericaSuma += ', ';
+    }
+  }
+
+  return cuartaCadenaNumericaSuma;
+}
+
+// Funcion para restar elemento por elemento dos cadenas numericas
+function restarCadenasNumericas(cadena1, cadena2) {
+  let numeros1 = cadena1.split(', ').map(numero => parseInt(numero, 10));
+  let numeros2 = cadena2.split(', ').map(numero => parseInt(numero, 10));
+
+  let revertirterceroCadenaNumericaResta = '';
+
+  // Obtener la longitud de la cadena más corta
+  let longitudMinima = Math.min(numeros1.length, numeros2.length);
+
+  for (let i = 0; i < longitudMinima; i++) {
+    let restaElementos = numeros1[i] - numeros2[i];
+    revertirterceroCadenaNumericaResta += restaElementos;
+
+    // Agregar una coma y un espacio si no es el ultimo numero
+    if (i < longitudMinima - 1) {
+      revertirterceroCadenaNumericaResta += ', ';
+    }
+  }
+
+  return revertirterceroCadenaNumericaResta;
+}
+
+// Funcion para sumar modulo a cada elemento de la cadena
+function sumarRestoQuintoElemento(cadena, cadenaSuma, indiceElemento, modulo) {
+  let numeros = cadena.split(', ').map(numero => parseInt(numero, 10));
+  let quintoElemento = numeros[indiceElemento];
+  let nunetElemento = numeros[indiceElemento+4];
+  let nunet2Elemento = numeros[indiceElemento+8];
+
+  let numerosSuma = cadenaSuma.split(', ').map(numero => parseInt(numero, 10));
+
+  let quintaCadenaNumerica = '';
+
+  for (let i = 0; i < numerosSuma.length; i++) {
+    let resultado = numerosSuma[i] + (quintoElemento % modulo)*(nunetElemento% (nunet2Elemento%5));
+    quintaCadenaNumerica += resultado;
+
+    // Agregar una coma y un espacio si no es el ultimo numero
+    if (i < numerosSuma.length - 1) {
+      quintaCadenaNumerica += ', ';
+    }
+  }
+
+  return quintaCadenaNumerica;
+}
+
+// Funcion para sumar modulo a cada elemento de la cadena
+function sumarRestosextoElemento(cadena, cadenaSuma, indiceElemento, modulo) {
+  let numeros = cadena.split(', ').map(numero => parseInt(numero, 10));
+  let sextoElemento = numeros[indiceElemento];
+  let nunenoElemento = numeros[indiceElemento+3];
+
+  let numerosSuma = cadenaSuma.split(', ').map(numero => parseInt(numero, 10));
+
+  let sextaCadenaNumerica = '';
+
+  for (let i = 0; i < numerosSuma.length; i++) {
+    let resultado = numerosSuma[i] + (sextoElemento % modulo)*17*(nunenoElemento % 6);
+    sextaCadenaNumerica += resultado;
+
+    // Agregar una coma y un espacio si no es el ultimo numero
+    if (i < numerosSuma.length - 1) {
+      sextaCadenaNumerica += ', ';
+    }
+  }
+
+  return sextaCadenaNumerica;
+}
+
+// Funcion para sumar modulo a cada elemento de la cadena
+function sumarRestorevertirprimeroElemento(cadena, cadenaResta, indiceElemento, modulo) {
+  let numeros = cadena.split(', ').map(numero => parseInt(numero, 10));
+  let revertirprimeroElemento = numeros[indiceElemento];
+  let nunenoElemento = numeros[indiceElemento+3];
+
+  let numerosResta = cadenaResta.split(', ').map(numero => parseInt(numero, 10));
+
+  let revertirprimeraCadenaNumerica = '';
+
+  for (let i = 0; i < numerosResta.length; i++) {
+    let resultado = numerosResta[i] - (revertirprimeroElemento % modulo)*17*(nunenoElemento % 6);
+    revertirprimeraCadenaNumerica += resultado;
+
+    // Agregar una coma y un espacio si no es el ultimo numero
+    if (i < numerosResta.length - 1) {
+      revertirprimeraCadenaNumerica += ', ';
+    }
+  }
+
+  return revertirprimeraCadenaNumerica;
+}
+
+// Funcion para sumar modulo a cada elemento de la cadena
+function sumarRestorevertirsegundoElemento(cadena, cadenaSuma, indiceElemento, modulo) {
+  let numeros = cadena.split(', ').map(numero => parseInt(numero, 10));
+  let quintoElemento = numeros[indiceElemento];
+  let nunetElemento = numeros[indiceElemento+4];
+  let nunet2Elemento = numeros[indiceElemento+8];
+
+  let numerosSuma = cadenaSuma.split(', ').map(numero => parseInt(numero, 10));
+
+  let revertirsegundaCadenaNumerica = '';
+
+  for (let i = 0; i < numerosSuma.length; i++) {
+    let resultado = numerosSuma[i] -  (quintoElemento % modulo)*(nunetElemento% (nunet2Elemento%5));
+    revertirsegundaCadenaNumerica += resultado;
+
+    // Agregar una coma y un espacio si no es el ultimo numero
+    if (i < numerosSuma.length - 1) {
+      revertirsegundaCadenaNumerica += ', ';
+    }
+  }
+
+  return revertirsegundaCadenaNumerica;
+}
+
+// Función para convertir cadena numérica en texto
+function cadenaNumericaATexto(revertirquartaCadenaNumerica) {
+  // Divide la cadena numérica en números separados por comas
+  let numeros = revertirquartaCadenaNumerica.split(',');
+  let texto = '';
+
+  // Recorre cada número y lo convierte en su carácter correspondiente
+  for (let i = 0; i < numeros.length; i++) {
+    let valor = parseInt(numeros[i]) ; // Dividido por 2 para invertir la operación
+    let caracter = String.fromCharCode(valor);
+    texto += caracter;
+  }
+
+  return texto;
+}
+
+----
+
+
+
+
+
+----
+
+
+----
+
+
+----------------------------- 2 
+
+-----------------------------
+
+function crearArrayDesdeCadenaNumerica(cadenaNum) {
+  let resultado = [];
+  let numeros = cadenaNum.split(/[,\s]+/);
+
+  for (let i = 0; i < numeros.length; i++) {
+    if (numeros[i] !== "") {
+      resultado.push(Number(numeros[i]));
+    }
+  }
+
+
+  return resultado;
+}
+function crearArrayDesdeCadenaNumerica2(cadenaNum2) {
+  let resultado = [];
+  let numeros = cadenaNum2.split(/[,\s]+/);
+
+  for (let i = 0; i < numeros.length; i++) {
+    if (numeros[i] !== "") {
+      resultado.push(Number(numeros[i]));
+    }
+  }
+
+
+  return resultado;
+}
+
+function mesclarArrays(){
+
+  let numeros = segundoCadenaNumerica.split(/[,\s]+/);
+
+  let mesmescla1 = array1;
+  let mesmescla2 = array2;
+
+mesmescla1[0+numeros[15]%4] = mesmescla2[4+numeros[15]%4];
+mesmescla1[4+numeros[15]%4] = mesmescla2[0+numeros[15]%4];
+
+mesmescla1[1+numeros[15]%4] = mesmescla2[3+numeros[15]%4];
+mesmescla1[3+numeros[15]%4] = mesmescla2[1+numeros[15]%4];
+
+mesmescla1[5+numeros[15]%4] = mesmescla2[11+numeros[15]%4];
+mesmescla1[11+numeros[15]%4] = mesmescla2[5+numeros[15]%4];
+
+mesmescla1[8+numeros[15]%4] = mesmescla2[18+numeros[15]%4];
+mesmescla1[18+numeros[15]%4] = mesmescla2[8+numeros[15]%4];
+
+mesmescla1[10+numeros[15]%4] = mesmescla2[19+numeros[15]%4];
+mesmescla1[19+numeros[15]%4] = mesmescla2[10+numeros[15]%4];
+
+mesmescla1[12+numeros[15]%4] = mesmescla2[14+numeros[15]%4];
+mesmescla1[14+numeros[15]%4] = mesmescla2[12+numeros[15]%4];
+
+mesmescla1[20+numeros[15]%4] = mesmescla2[24+numeros[15]%4];
+mesmescla1[24+numeros[15]%4] = mesmescla2[20+numeros[15]%4];
+
+mesmescla1[21+numeros[15]%4] = mesmescla2[22+numeros[15]%4];
+mesmescla1[22+numeros[15]%4] = mesmescla2[21+numeros[15]%4];
+
+mesmescla1[33+numeros[15]%4] = mesmescla2[35+numeros[15]%4];
+mesmescla1[35+numeros[15]%4] = mesmescla2[33+numeros[15]%4];
+
+mesmescla1[30+numeros[15]%4] = mesmescla2[34+numeros[15]%4];
+mesmescla1[34+numeros[15]%4] = mesmescla2[30+numeros[15]%4];
+
+array1= mesmescla1;
+array2= mesmescla2;
+}
+
+let cadenaNum = sextaCadenaNumerica;
+let cadenaNum2 = segundoCadenaNumerica;
+let array1 = crearArrayDesdeCadenaNumerica(cadenaNum);
+let array2 = [...array1];
+let array0 = crearArrayDesdeCadenaNumerica2(cadenaNum2);
+mesclarArrays();
+
+
+let cadenaNu1 = array1.join(', ');
+let cadenaNu2 = array2.join(', ');
+
+//console.log("segundo texto", cadenaNum2); 
+//console.log("sextaCadenaNumerica",sextaCadenaNumerica); 
+console.log("resultado:",cadenaNu1); 
+//console.log(cadenaNu2);
+
+-----------------------------
+
+-----------------------------
+
+
+-----------------------------
+
+------------------------ 
+--- cifrar barajando html
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reordenar Cadena Num�rica</title>
+</head>
+<body>
+    <h1>Reordenar Cadena Num�rica</h1>
+    <div id="resultado"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+-----------------------------
+
+
+---- 
+
+function reordenarCadenas() {
+    const cadenaNumerica = prompt("Introduce una cadena num�rica:");
+    const cortes = prompt("Introduce un n�mero de al menos 2 d�gitos para los cortes de la cadena:");
+
+    // Convertimos la cadena num�rica a un array de n�meros
+    let numeros = cadenaNumerica.split(',').map(numero => numero.trim());
+
+    // Verificamos que el n�mero de cortes tenga al menos 2 d�gitos
+    if (cortes.length < 2) {
+        alert("El n�mero de cortes debe tener al menos 2 d�gitos.");
+        return;
+    }
+
+    let nuevaCadena = [...numeros]; // Inicializamos la nueva cadena con la cadena original
+
+    // Iteramos hasta que no queden d�gitos en el n�mero proporcionado
+    let i = 0;
+    while (i + 1 < cortes.length) {
+        // Extraemos los d�gitos para los cortes en esta iteraci�n
+        const corte1 = parseInt(cortes[i], 10);
+        const corte2 = parseInt(cortes[i + 1], 10);
+
+        // Verificamos si el primer n�mero de cada par es mayor
+        if (corte1 > corte2) {
+            // Salteamos este par y avanzamos al siguiente par
+            i += 2;
+            continue;
+        }
+
+        // Realizamos los cortes de acuerdo a las especificaciones
+        const inicio = nuevaCadena.slice(0, corte1);
+        const medio = nuevaCadena.slice(corte1, corte2);
+        const final = nuevaCadena.slice(corte2);
+
+        // Creamos la nueva cadena con los elementos reordenados
+        nuevaCadena = medio.concat(inicio, final);
+
+        // Incrementamos el �ndice para la pr�xima iteraci�n
+        i += 2;
+    }
+
+    // Mostramos el resultado en la p�gina
+    const resultado = `Nueva cadena: ${nuevaCadena.join(', ')}`;
+    document.getElementById('resultado').innerText = resultado;
+}
+
+// Llamamos a la funci�n para que se ejecute cuando se carga la p�gina
+reordenarCadenas();
